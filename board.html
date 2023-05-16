@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="board.css">
+  <link rel="stylesheet" href="add_task_style.css">
+  <title>JOIN | Kanban board</title>
+  <script src="./mini_backend.js"></script>
+  <script src="drag&drop.js"></script>
+</head>
+
+<body id="home" onload="init();generateBoard();">
+
+  <header id="desktopHeader" class="desktop-header"></header>
+  <nav id="desktopNavbar" class="desktop-navbar"></nav>
+
+  <header id="mobileHeader" class="mobile-header"></header>
+  <nav id="mobileNavbar" class="mobile-navbar"></nav>
+
+
+  <main class="board-main-D">
+    <!-- Board Content -->
+    <div class="board-head-D">
+      <div class="button-mobile-container-D">
+        <h3 class="headline-board-D">Board</h3>
+        <button class="add-task-mobile-D" id="addTaskMobile" onclick="window.location.href='add_task.html';">
+          <span class="button-text-D"> Add Task </span>
+          <img src="assets/img/Icon-plus.svg" alt="">
+        </button>
+      </div>
+
+      <div class="find-add-container-D">
+        <input class="find-task-D" id="findTaskD" onkeyup="filterTasks() " type="text" placeholder="Find Task">
+        <button class="add-task-D" onclick="window.location.href='add_task.html';">
+          <span class="button-text-D"> Add Task </span>
+          <img src="assets/img/Icon-plus.svg" alt="">
+        </button>
+      </div>
+    </div>
+
+    <div class="work-task-container-D" id="workTaskContainerD">
+      <div class="boardlist" id="boardList-0">
+
+        <div class="boardlist-header" id="boardListHeader-0">
+          <h4>To do</h4>
+          <button id="smallPlusD" class="small-plus-D" onclick="window.location.href='add_task.html';"><img
+              src="assets/img/icon-add-plus-dark.svg" alt=""></button>
+          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+        </div>
+
+
+        <div class="boardlist-body dragbox" ondrop="drop_handler(0)" ondragover="dragover_handler(event)" id="0">
+
+
+        </div>
+      </div>
+
+
+
+
+      <div class="boardlist " id="boardList-1">
+        <div class="boardlist-header" id="boardListHeader-1">
+          <h4>In progress</h4> <button id="smallPlusD" class="small-plus-D"
+            onclick="window.location.href='add_task.html';"><img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+        </div>
+
+        <div class="boardlist-body dragbox" ondrop="drop_handler(1)" ondragover="dragover_handler(event)" id="1">
+
+        </div>
+      </div>
+      <div class="boardlist" id="boardList-2">
+        <div class="boardlist-header" id="boardListHeader-2">
+          <h4>Awaiting Feedback</h4> <button id="smallPlusD" class="small-plus-D"
+            onclick="window.location.href='add_task.html';"><img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+        </div>
+
+        <div class="boardlist-body dragbox" ondrop="drop_handler(2)" ondragover="dragover_handler(event)" id="2">
+
+        </div>
+      </div>
+      <div class="boardlist" id="boardList-3">
+        <div class="boardlist-header" id="boardListHeader-3">
+          <h4>Done</h4> <button id="smallPlusD" class="small-plus-D"
+            onclick="window.location.href='add_task.html';"><img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+          <button id="smallPlusMobile" class="small-plus-mobile" onclick="window.location.href='add_task.html';">
+            <img src="assets/img/icon-add-plus-dark.svg" alt="">
+          </button>
+        </div>
+
+        <div class="boardlist-body dragbox" ondrop="drop_handler(3)" ondragover="dragover_handler(event)" id="3">
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- #################### NOTE EDIT BOARD WORK TASK OVERLAY #################### -->
+
+    <div class="pop-up-task-D d-none" id="popUpTaskD">
+
+      <div class="work-category-D" id="taskCategoryOverlayD">
+        Sales
+      </div>
+      <div class="close-work-overlay-D">
+        <button onclick="closeWorkTaskOverlay()">x</button>
+      </div>
+
+      <div class="work-overlay-headline-D"> Call potential clients</div>
+      <span>Make the product presentation to prospective buyers</span>
+
+      <div class="work-overlay-date-D">
+        <b>Due date:</b> <span class="overlay-date-D" id="overlayDateD">05-08-2023</span>
+      </div>
+      <div class="priority-overlay-D">
+        <b>Priority:</b> <img src="assets/img/priority-urgent.svg" alt="">
+      </div>
+      <div class="assigned-overlay-D">
+        <b>Assigned To:</b>
+        <div class="user-overlay-D">
+          <span>User 1</span>
+          <span>User 2</span>
+          <span>User 3</span>
+          <span>User 4</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- #################### NOTE ADD TASK OVERLAY #################### -->
+
+    <div class="slide-in-add-task-wrapper d-none" id="slideInAddTaskWrapper">
+
+    </div>
+    <div class="change-task-wrapper d-none" id="changeTaskWrapper">
+
+    </div>
+  </main>
+  <script src="script.js"></script>
+  <script src="board.js"></script>
+  <script src="add_task.js"></script>
+
+</body>
+
+</html>

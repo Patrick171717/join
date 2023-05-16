@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="add_task_style.css">
+  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <title>Join | Add task</title>
+  <script src="./mini_backend.js"></script>
+</head>
+
+<body id="home" onload="init(); initTasks()">
+
+  <header id="desktopHeader" class="desktop-header"></header>
+  <nav id="desktopNavbar" class="desktop-navbar"></nav>
+
+  <header id="mobileHeader" class="mobile-header"></header>
+  <nav id="mobileNavbar" class="mobile-navbar"></nav>
+
+  <!-- ANCHOR - Left - taskfield -->
+
+  <main>
+    <div class="add-task-wrapper">
+      <form onsubmit="return false">
+        <div class="summary-mobile-headline">Kanban Project Management Tool</div>
+        <h3>Add Task</h3>
+
+        <div class="add-task-form-separator-left">
+
+          <div class="add-task-form-item">
+            <label for="taskTitle">Title</label>
+            <input required type="text" class="input-title-J width" placeholder="Enter a title" name="Title"
+              id="taskTitle">
+          </div>
+          <div class="add-task-form-item">
+            <label for="taskDescription">Description</label>
+            <textarea required placeholder="Enter a Description" name="Description" class="resize-none"
+              id="taskDescription" rows="10">
+            </textarea>
+          </div>
+
+          <div class="add-task-form-item">
+            <span>Prio</span>
+            <div class="prio-button-wrapper">
+              <button onclick="setPriorityUrgent()" id="taskButtonUrgent" class="prio-button-urgent">Urgent
+                <img src="assets/img/prio-urgent.svg">
+              </button>
+              <button onclick="setPriorityMedium()" id="taskButtonMedium" class="prio-button-medium">Medium
+                <img src="assets/img/prio-medium.svg">
+              </button>
+              <button onclick="setPriorityLow()" id="taskButtonLow" class="prio-button-low">Low
+                <img src="assets/img/prio-low.svg"></button>
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <div class="add-task-form-separator-right">
+
+          <div class="add-task-form-item">
+            <label for="taskDate">Due date</label>
+            <input required class=" right-taskfield-input" type="date" placeholder="dd/mm/yyyy" name="" id="taskDate">
+          </div>
+
+          <div class="add-task-form-item">
+            <label for="taskCategory">Category</label>
+            <select name="Category" placeholder="Category" id="taskCategory">
+              <option aria-placeholder="" disabled selected hidden>Category</option>
+              <option value="Backoffice">Backoffice</option>
+              <option value="Customer Service">Customer Service</option>
+              <option value="Warhouse">Warehouse</option>
+            </select>
+          </div>
+
+          <div class="add-task-form-item">
+            <label for="taskAssigned">Assigned to</label>
+            <select name="Select Contacts to assign" placeholder="Select Contacts to assign" id="taskAssigned" required>
+            </select>
+          </div>
+
+          <div class="add-task-form-item">
+            <label for="taskAssigned">Board list</label>
+            <select class="width" name="selectBoardlist" placeholder="Select Board List" id="taskBoardList" required>
+            </select>
+          </div>
+
+          <div class="add-task-form-item-buttons">
+            <button onclick="taskClearButton() " class="button button-white">Clear
+              <img src="assets/img/icon-black-clear.svg">
+            </button>
+
+            <button onclick="addTaskToUser(); taskCreateImageUp();" class="button button-darkblue">Create Task
+              <img src="assets/img/icon-white-create.svg">
+            </button>
+
+
+          </div>
+          <img id="taskCreate" class="task-create-img" src="assets/img/message-task-added.svg">
+        </div>
+      </form>
+    </div>
+
+
+
+  </main>
+  <script src="script.js"></script>
+  <script src="add_task.js"></script>
+</body>
+
+</html>
